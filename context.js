@@ -12,7 +12,7 @@ function Card(props) {
     }
     function cardHeader(){
         const txt = props.headercolor ? props.headercolor : ' ';
-        return + txt;
+        return txt;
     }
     function cardHeader2(){
         const bg = props.headerBackground ? props.headerBackground : ' ';
