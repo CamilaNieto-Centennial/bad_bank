@@ -39,6 +39,8 @@ function BankForm(props, {chooseShowP}) {
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [deposit, setDeposit] = React.useState('');
+    const [withdraw, setWithdraw] = React.useState('');
     const ctx = React.useContext(UserContext)
 
     function validate(field, label) {
@@ -69,6 +71,18 @@ function BankForm(props, {chooseShowP}) {
         setPassword('');
         setShow(true)
         props.chooseShowP(true)
+    }
+
+    function handleLogin() {
+        console.log("Login as " + email, password);
+    }
+
+    function handleDeposit() {
+        console.log("Deposit " + deposit);
+    }
+
+    function handleWithdraw() {
+        console.log("Withdraw " + withdraw);
     }
 
     return (
@@ -105,6 +119,28 @@ function BankForm(props, {chooseShowP}) {
                 </>
                 )
             }
+            {props.balance && (
+                <>
+                    <p>Balance <strong>{props.balance}</strong></p>
+                </>
+                )
+            }
+            {props.deposit && (
+                <>
+                    <label htmlFor={props.deposit}>Deposit Amount</label>
+                    <input type="number" className="form-control" id={props.deposit} placeholder="Deposit Amount" value={deposit} onChange={e => setDeposit(e.currentTarget.value)}/>
+                    <br />
+                </>
+                )
+            }
+            {props.withdraw && (
+                <>
+                    <label htmlFor={props.withdraw}>Withdraw Amount</label>
+                    <input type="number" className="form-control" id={props.withdraw} placeholder="Withdraw Amount" value={withdraw} onChange={e => setWithdraw(e.currentTarget.value)}/>
+                    <br />
+                </>
+                )
+            }
             {props.buttonCreate && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={handleCreate}>{props.buttonCreate}</button>
@@ -114,6 +150,24 @@ function BankForm(props, {chooseShowP}) {
             {props.buttonAdd && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={clearForm}>{props.buttonAdd}</button>
+                </>
+                )
+            }
+            {props.buttonLogin && (
+                <>
+                    <button type="submit" className="btn btn-secondary" onClick={handleLogin}>{props.buttonLogin}</button>
+                </>
+                )
+            }
+            {props.buttonDeposit && (
+                <>
+                    <button type="submit" className="btn btn-secondary" onClick={handleDeposit}>{props.buttonDeposit}</button>
+                </>
+                )
+            }
+            {props.buttonWithdraw && (
+                <>
+                    <button type="submit" className="btn btn-secondary" onClick={handleWithdraw}>{props.buttonWithdraw}</button>
                 </>
                 )
             }

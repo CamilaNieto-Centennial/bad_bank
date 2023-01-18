@@ -1,9 +1,41 @@
 function Login(){
-    const ctx = React.useContext(UserContext)
+    const [showP, setShowP] = React.useState(true);
+    const [statusP, setStatusP] = React.useState('');
+
+    const chooseShowP = (showP) => {
+        setShowP(showP);
+    };
+    const chooseStatusP = (statusP) => {
+        setStatusP(statusP);
+    };
+
     return(
-        <div>
-            <h1>Login</h1>
-            <h5>{JSON.stringify(ctx)}</h5>
+        <div className="container" style={{margin: "2em"}}>
+            <Card
+                bgcolor="light"
+                txtcolor="black"
+                header="Login"
+                headercolor = "#ffffff"
+                headerBackground = "#1b2a41"
+                body={showP
+                    ? (
+                        <BankForm
+                            chooseStatusP={chooseStatusP}
+                            statusP={statusP}
+                            email="email"
+                            password="password"
+                            buttonLogin="Login"
+                            chooseShowP={chooseShowP}
+                        />
+                    )
+                    :(
+                        <BankForm
+                            message="Successfully Login"
+                        />
+                    )
+                }
+            >
+            </Card>
         </div>
     )
 }
