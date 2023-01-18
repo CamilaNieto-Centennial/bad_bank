@@ -1,4 +1,7 @@
 function Withdraw(){
+    const ctx = React.useContext(UserContext)
+    let current_user = ctx.current_user;
+    
     const [showP, setShowP] = React.useState(true);
     const [statusP, setStatusP] = React.useState('');
 
@@ -17,6 +20,7 @@ function Withdraw(){
                 header="Withdraw"
                 headercolor = "#ffffff"
                 headerBackground = "#1b2a41"
+                title={`${current_user}`}
                 body={showP
                     ? (
                         <BankForm
@@ -31,6 +35,8 @@ function Withdraw(){
                     :(
                         <BankForm
                             message="Successfully Withdraw"
+                            buttonAddD="Add another Withdraw"
+                            chooseShowP={chooseShowP}
                         />
                     )
                 }

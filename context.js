@@ -73,8 +73,55 @@ function BankForm(props, {chooseShowP}) {
         props.chooseShowP(true)
     }
 
+    function validateLogin(fieldEmail, fieldPwd) {
+        let emails = []
+        let usersArray = Object.values(ctx.users);
+        //console.log(usersArray)
+        // Get emails from context (ctx.users) and add them to 'emails' array
+        for(let i in usersArray){
+            emails.push({name:usersArray[i]["name"], email : usersArray[i]["email"], password : usersArray[i]["password"]})
+        }
+        console.log(emails)
+
+        // Check if email typed exists
+        for (let i in emails) {
+            console.log("------")
+            console.log(emails[i]['email']);
+            console.log(emails[i]['password']);
+            if (fieldEmail === emails[i]['email'] && fieldPwd === emails[i]['password']){
+                console.log("Coincidence with " + emails[i]['email'] + " and " + emails[i]['password'])
+                props.chooseShowP(false)
+                let current_user = ctx.current_user;
+                current_user.splice(0, 1, emails[i]['name']);
+                return true
+            }
+            else {
+                console.log("No match")
+                props.chooseStatusP('No match. Try again.');
+                setTimeout(() => props.chooseStatusP(''), 5000);
+            }
+        }
+        //return true;
+    }
+
     function handleLogin() {
         console.log("Login as " + email, password);
+        if(!validate(email, 'email')) return;
+        if(!validate(password, 'password')) return;
+        if(!validateLogin(email, password)) return;
+
+    }
+
+    function clearFormD() {
+        setDeposit('');
+        setShow(true)
+        props.chooseShowP(true)
+    }
+
+    function clearFormW() {
+        setWithdraw('');
+        setShow(true)
+        props.chooseShowP(true)
     }
 
     function handleDeposit() {
@@ -107,14 +154,14 @@ function BankForm(props, {chooseShowP}) {
             {props.password && (
                 <>
                     <label htmlFor={props.password}>Password</label>
-                    <input type="password" className="form-control" id={props.password} placeholder="" value={password} onChange={e => setPassword(e.currentTarget.value)}/>
+                    <input type="password" className="form-control" id={props.password} placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/>
                     <br />
                 </>
                 )
             }
             {props.message && (
                 <>
-                    <h5 id={props.message}><strong>Success</strong></h5>
+                    <h5><strong>{props.message}</strong></h5>
                     <br />
                 </>
                 )
@@ -162,6 +209,18 @@ function BankForm(props, {chooseShowP}) {
             {props.buttonDeposit && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={handleDeposit}>{props.buttonDeposit}</button>
+                </>
+                )
+            }
+            {props.buttonAddD && (
+                <>
+                    <button type="submit" className="btn btn-secondary" onClick={clearFormD}>{props.buttonAddD}</button>
+                </>
+                )
+            }
+            {props.buttonAddW && (
+                <>
+                    <button type="submit" className="btn btn-secondary" onClick={clearFormW}>{props.buttonAddW}</button>
                 </>
                 )
             }

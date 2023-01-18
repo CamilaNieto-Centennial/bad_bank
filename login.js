@@ -1,4 +1,6 @@
 function Login(){
+    const ctx = React.useContext(UserContext)
+    let current_user = Object.values(ctx.current_user);
     const [showP, setShowP] = React.useState(true);
     const [statusP, setStatusP] = React.useState('');
 
@@ -30,7 +32,8 @@ function Login(){
                     )
                     :(
                         <BankForm
-                            message="Successfully Login"
+                            message={`Successfully Login as ${current_user}`}
+                            chooseShowP={chooseShowP}
                         />
                     )
                 }
