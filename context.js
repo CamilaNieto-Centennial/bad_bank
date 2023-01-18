@@ -74,7 +74,6 @@ function BankForm(props, {chooseShowP}) {
     }
 
     function validateLogin(fieldEmail, fieldPwd) {
-        let emails = []
         let usersArray = Object.values(ctx.users);
         console.log(usersArray)
 
@@ -87,7 +86,7 @@ function BankForm(props, {chooseShowP}) {
                 console.log("Coincidence with " + usersArray[i]['email'] + " and " + usersArray[i]['password'])
                 props.chooseShowP(false)
                 let current_user = ctx.current_user;
-                current_user.splice(0, 2, usersArray[i]['name'], usersArray[i]['balance']);
+                current_user.splice(0, 3, usersArray[i]['name'], usersArray[i]['balance'], usersArray[i]['email']);
                 return true
             }
             else {
@@ -106,6 +105,41 @@ function BankForm(props, {chooseShowP}) {
 
     }
 
+    function updateUsers(){
+        let users = ctx.users;
+        let current_user = ctx.current_user;
+        for (let i in users) {
+            console.log(users[i]['email']);
+            if (current_user[2] === users[i]['email']){
+                users[i]["balance"] = current_user[1]
+                console.log("Updated users data")
+                return true
+            }
+        }
+    }
+
+    function handleDeposit() {
+        console.log("Deposit " + deposit);
+        if(!validate(deposit, 'deposit')) return;
+        let current_user = ctx.current_user;
+        let newDeposit = current_user[1] + parseInt(deposit)
+        current_user.splice(1, 1, newDeposit);
+        console.log(current_user)
+        updateUsers()
+        props.chooseShowP(false)
+    }
+
+    function handleWithdraw() {
+        console.log("Withdraw " + withdraw);
+        if(!validate(withdraw, 'withdraw')) return;
+        let current_user = ctx.current_user;
+        let newWithdraw = current_user[1] - parseInt(withdraw)
+        current_user.splice(1, 1, newWithdraw);
+        console.log(current_user)
+        updateUsers()
+        props.chooseShowP(false)
+    }
+
     function clearFormD() {
         setDeposit('');
         setShow(true)
@@ -116,14 +150,6 @@ function BankForm(props, {chooseShowP}) {
         setWithdraw('');
         setShow(true)
         props.chooseShowP(true)
-    }
-
-    function handleDeposit() {
-        console.log("Deposit " + deposit);
-    }
-
-    function handleWithdraw() {
-        console.log("Withdraw " + withdraw);
     }
 
     return (

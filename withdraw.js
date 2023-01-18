@@ -35,7 +35,7 @@ function Withdraw(){
                     :(
                         <BankForm
                             message="Successfully Withdraw"
-                            buttonAddD="Add another Withdraw"
+                            buttonAddW="Add another Withdraw"
                             chooseShowP={chooseShowP}
                         />
                     )
