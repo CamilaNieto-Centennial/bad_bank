@@ -8,7 +8,7 @@ function Home(){
                 header="BadBank Landing Page"
                 headercolor = "black"
                 headerBackground = "#89c2d9"
-                title={`Welcome to the bank ${current_user}!`}
+                title={`Welcome to the bank ${current_user[0]}!`}
                 text="You can use this bank"
                 body={(<img src="bank.png" className="img-fluid" alt="Responsive image"></img>)}
             />

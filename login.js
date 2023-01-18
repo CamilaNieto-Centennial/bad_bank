@@ -32,7 +32,7 @@ function Login(){
                     )
                     :(
                         <BankForm
-                            message={`Successfully Login as ${current_user}`}
+                            message={`Successfully Login as ${current_user[0]}`}
                             chooseShowP={chooseShowP}
                         />
                     )

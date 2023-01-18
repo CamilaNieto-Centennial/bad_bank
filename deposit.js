@@ -1,7 +1,7 @@
 function Deposit(){
     const ctx = React.useContext(UserContext)
     let current_user = ctx.current_user;
-    
+
     const [showP, setShowP] = React.useState(true);
     const [statusP, setStatusP] = React.useState('');
 
@@ -20,13 +20,13 @@ function Deposit(){
                 header="Deposit"
                 headercolor = "#ffffff"
                 headerBackground = "#1b2a41"
-                title={`${current_user}`}
+                title={`${current_user[0]}`}
                 body={showP
                     ? (
                         <BankForm
                             chooseStatusP={chooseStatusP}
                             statusP={statusP}
-                            balance="$"
+                            balance={`$ ${current_user[1]}`}
                             deposit="deposit"
                             buttonDeposit="Deposit"
                             chooseShowP={chooseShowP}

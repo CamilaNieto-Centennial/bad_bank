@@ -76,23 +76,18 @@ function BankForm(props, {chooseShowP}) {
     function validateLogin(fieldEmail, fieldPwd) {
         let emails = []
         let usersArray = Object.values(ctx.users);
-        //console.log(usersArray)
-        // Get emails from context (ctx.users) and add them to 'emails' array
-        for(let i in usersArray){
-            emails.push({name:usersArray[i]["name"], email : usersArray[i]["email"], password : usersArray[i]["password"]})
-        }
-        console.log(emails)
+        console.log(usersArray)
 
-        // Check if email typed exists
-        for (let i in emails) {
+        // Check if email and password typed exists
+        for (let i in usersArray) {
             console.log("------")
-            console.log(emails[i]['email']);
-            console.log(emails[i]['password']);
-            if (fieldEmail === emails[i]['email'] && fieldPwd === emails[i]['password']){
-                console.log("Coincidence with " + emails[i]['email'] + " and " + emails[i]['password'])
+            console.log(usersArray[i]['email']);
+            console.log(usersArray[i]['password']);
+            if (fieldEmail === usersArray[i]['email'] && fieldPwd === usersArray[i]['password']){
+                console.log("Coincidence with " + usersArray[i]['email'] + " and " + usersArray[i]['password'])
                 props.chooseShowP(false)
                 let current_user = ctx.current_user;
-                current_user.splice(0, 1, emails[i]['name']);
+                current_user.splice(0, 2, usersArray[i]['name'], usersArray[i]['balance']);
                 return true
             }
             else {
@@ -101,7 +96,6 @@ function BankForm(props, {chooseShowP}) {
                 setTimeout(() => props.chooseStatusP(''), 5000);
             }
         }
-        //return true;
     }
 
     function handleLogin() {
