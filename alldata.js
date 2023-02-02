@@ -1,10 +1,5 @@
 function AllData() {
     const ctx = React.useContext(UserContext)
-    let current_user = ctx.current_user;
-    let usersArray = Object.values(ctx.users);
-
-    console.log(current_user);
-    console.log(usersArray);
 
     return (
         <div style={{margin: "2em"}}>

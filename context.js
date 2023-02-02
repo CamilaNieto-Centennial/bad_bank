@@ -4,6 +4,7 @@ const HashRouter = ReactRouterDOM.HashRouter;
 
 const UserContext = React.createContext(null);
 
+/* Card Function */ 
 function Card(props) {
     function classes() {
         const bg = props.bgcolor ? ' bg-' + props.bgcolor : ' ';
@@ -31,6 +32,7 @@ function Card(props) {
     )
 }
 
+/* Table Function */
 function Table(props) {
     const ctx = React.useContext(UserContext)
     let usersArray = Object.values(ctx.users);
@@ -40,6 +42,7 @@ function Table(props) {
         const striped = props.striped ? ' table-' + props.striped : ' ';
         return 'table' + bg + striped;
     }
+
     return (
         <div className="table-responsive">
             <table className={classes()}>
@@ -52,7 +55,7 @@ function Table(props) {
                         })}
                     </tr>
                 </thead>
-                <tbody class="table-group-divider">
+                <tbody className="table-group-divider">
                     {usersArray.map(item => {
                         return (
                             <tr key={item.email}>
@@ -66,21 +69,11 @@ function Table(props) {
                 </tbody>
             </table>
         </div>
-        /*<div className={classes()} style={{maxWidth: "18rem"}}>
-            <div className="card-header" style={{background: cardHeader2(), color: cardHeader()}}>{props.header}</div>
-            <div className="card-body">
-                {props.title && (<h5 className="card-title" style={{fontWeight: "bold"}}>{props.title}</h5>)}
-                {props.text && (<p className="card-text">{props.text}</p>)}
-                {props.body}
-                {props.status && (<h5 id="createStatus">{props.status}</h5>)}
-            </div>
-        </div>*/
     )
 }
 
-
+/* BankForm Function */
 function BankForm(props, { chooseShowP }) {
-
     const [show, setShow] = React.useState(true);
     const [status, setStatus] = React.useState('');
     const [name, setName] = React.useState('');
@@ -90,11 +83,12 @@ function BankForm(props, { chooseShowP }) {
     const [withdraw, setWithdraw] = React.useState('');
     const ctx = React.useContext(UserContext)
 
+    /* Validate empty fields */
     function validate(field, label) {
         if (!field) {
             console.log('Error: ' + label)
-            setStatus('Error: ' + label);
-            setTimeout(() => setStatus(''), 3000);
+            /*setStatus('Error: ' + label);
+            setTimeout(() => setStatus(''), 3000);*/
             props.chooseStatusP('Error: ' + label);
             setTimeout(() => props.chooseStatusP(''), 3000);
             return false;
@@ -102,6 +96,7 @@ function BankForm(props, { chooseShowP }) {
         return true;
     }
 
+    /* Handle Create Account Button */
     function handleCreate() {
         console.log(name, email, password);
         if (!validate(name, 'name')) return;
@@ -112,6 +107,7 @@ function BankForm(props, { chooseShowP }) {
         props.chooseShowP(false)
     }
 
+    /* Clear Create Account Form after Add new Account */
     function clearForm() {
         setName('');
         setEmail('');
@@ -120,6 +116,7 @@ function BankForm(props, { chooseShowP }) {
         props.chooseShowP(true)
     }
 
+    /* Validate Login fields with registered users (usersArray) */
     function validateLogin(fieldEmail, fieldPwd) {
         let usersArray = Object.values(ctx.users);
         console.log(usersArray)
@@ -144,6 +141,7 @@ function BankForm(props, { chooseShowP }) {
         }
     }
 
+    /* Handle Login Button */
     function handleLogin() {
         console.log("Login as " + email, password);
         if (!validate(email, 'email')) return;
@@ -152,6 +150,7 @@ function BankForm(props, { chooseShowP }) {
 
     }
 
+    /* Update balance of the registered user that match with current_user */ 
     function updateUsers() {
         let users = ctx.users;
         let current_user = ctx.current_user;
@@ -165,6 +164,7 @@ function BankForm(props, { chooseShowP }) {
         }
     }
 
+    /* Handle Deposit Button (update current_user's Deposit ONLY) */
     function handleDeposit() {
         console.log("Deposit " + deposit);
         if (!validate(deposit, 'deposit')) return;
@@ -176,6 +176,7 @@ function BankForm(props, { chooseShowP }) {
         props.chooseShowP(false)
     }
 
+    /* Handle Withdraw Button */
     function handleWithdraw() {
         console.log("Withdraw " + withdraw);
         if (!validate(withdraw, 'withdraw')) return;
@@ -201,6 +202,7 @@ function BankForm(props, { chooseShowP }) {
 
     return (
         <>
+            {/* Error message */}
             {props.statusP && (<h5 id="createStatus" className="text-danger"><strong>{props.statusP}</strong></h5>)}
             {props.name && (
                 <>
@@ -226,6 +228,7 @@ function BankForm(props, { chooseShowP }) {
                 </>
             )
             }
+            {/* Success message */}
             {props.message && (
                 <>
                     <h5><strong>{props.message}</strong></h5>
@@ -233,6 +236,7 @@ function BankForm(props, { chooseShowP }) {
                 </>
             )
             }
+            {/* Balance info on top of Withdraw & Deposit pages */}
             {props.balance && (
                 <>
                     <p>Balance <strong>{props.balance}</strong></p>
@@ -255,42 +259,49 @@ function BankForm(props, { chooseShowP }) {
                 </>
             )
             }
+            {/* Create Account Button */}
             {props.buttonCreate && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={handleCreate}>{props.buttonCreate}</button>
                 </>
             )
             }
+            {/* Add Account Button */}
             {props.buttonAdd && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={clearForm}>{props.buttonAdd}</button>
                 </>
             )
             }
+            {/* Login Button */}
             {props.buttonLogin && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={handleLogin}>{props.buttonLogin}</button>
                 </>
             )
             }
+            {/* Deposit Button */}
             {props.buttonDeposit && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={handleDeposit}>{props.buttonDeposit}</button>
                 </>
             )
             }
+            {/* Add Deposit Button */}
             {props.buttonAddD && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={clearFormD}>{props.buttonAddD}</button>
                 </>
             )
             }
+            {/* Add Withdraw Button */}
             {props.buttonAddW && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={clearFormW}>{props.buttonAddW}</button>
                 </>
             )
             }
+            {/* Withdraw Button */}
             {props.buttonWithdraw && (
                 <>
                     <button type="submit" className="btn btn-secondary" onClick={handleWithdraw}>{props.buttonWithdraw}</button>

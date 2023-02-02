@@ -20,13 +20,13 @@ function CreateAccount(props){
                 body={showP
                     ? (
                         <BankForm
-                            chooseStatusP={chooseStatusP}
-                            statusP={statusP}
+                            chooseStatusP={chooseStatusP} /* Choose Error message */
+                            statusP={statusP} /* Error message to display */ 
                             name="name"
                             email="email"
                             password="password"
                             buttonCreate="Create Account"
-                            chooseShowP={chooseShowP}
+                            chooseShowP={chooseShowP} /*Change the 'showP'*/
                         />
                     )
                     :(
