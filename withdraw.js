@@ -13,7 +13,7 @@ function Withdraw(){
     };
     
     return(
-        <div className="container" style={{margin: "2em"}}>
+        <div style={{margin: "2em"}}>
             <Card
                 bgcolor="light"
                 txtcolor="black"

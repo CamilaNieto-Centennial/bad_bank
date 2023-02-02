@@ -2,7 +2,7 @@ function Home(){
     const ctx = React.useContext(UserContext)
     let current_user = ctx.current_user;
     return(
-        <div className="container" style={{margin: "2em"}}>
+        <div style={{margin: "2em"}}>
             <Card
                 txtcolor="black"
                 header="BadBank Landing Page"
