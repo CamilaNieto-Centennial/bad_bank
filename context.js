@@ -4,7 +4,7 @@ const HashRouter = ReactRouterDOM.HashRouter;
 
 const UserContext = React.createContext(null);
 
-/* Card Function */ 
+/* Card Function */
 function Card(props) {
     function classes() {
         const bg = props.bgcolor ? ' bg-' + props.bgcolor : ' ';
@@ -96,12 +96,66 @@ function BankForm(props, { chooseShowP }) {
         return true;
     }
 
+    /* Validate email to be email@gmail.com format */
+    function validateFormatEmail(fieldEmail) {
+        //
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (fieldEmail.match(validRegex)) {
+            console.log("Valid email address!");
+            //document.form1.text1.focus();
+            return true;
+        } 
+        else {
+            console.log("Invalid email address!"+ fieldEmail)
+            props.chooseStatusP('Invalid format of the email.');
+            setTimeout(() => props.chooseStatusP(''), 5000);
+            return false;
+        }
+    }
+
+    /* Password can NOT be less than 8 characters */
+    function validateLengthPwd(fieldPwd) {
+        if (fieldPwd.length < 8) {
+            // Error
+            console.log('Password length Error: ' + fieldPwd)
+            props.chooseStatusP('Your passsword must be at least 8 characters.');
+            setTimeout(() => props.chooseStatusP(''), 5000);
+            return false;
+        }
+        return true;
+    }
+
+    /* Check the email typed does NOT exist yet */
+    function validateUniqueEmail(fieldEmail) {
+        let usersArray = Object.values(ctx.users);
+        console.log(usersArray)
+
+        // Check if email typed exists
+        for (let i in usersArray) {
+            console.log("------")
+            console.log(usersArray[i]['email']);
+            if (fieldEmail === usersArray[i]['email']) {
+                console.log("Coincidence with " + usersArray[i]['email'])
+                props.chooseStatusP('Email already exists.');
+                setTimeout(() => props.chooseStatusP(''), 5000);
+                return true;
+            }
+            else {
+                console.log("No match. Email is new.")
+            }
+        }
+    }
+
     /* Handle Create Account Button */
     function handleCreate() {
-        console.log(name, email, password);
+        console.log("You typed: " + name, email, password);
         if (!validate(name, 'name')) return;
         if (!validate(email, 'email')) return;
         if (!validate(password, 'password')) return;
+        if (validateUniqueEmail(email)) return;
+        if (!validateLengthPwd(password)) return;
+        if (!validateFormatEmail(email)) return;
         ctx.users.push({ name, email, password, balance: 100 })
         setShow(false)
         props.chooseShowP(false)
@@ -150,7 +204,7 @@ function BankForm(props, { chooseShowP }) {
 
     }
 
-    /* Update balance of the registered user that match with current_user */ 
+    /* Update balance of the registered user that match with current_user */
     function updateUsers() {
         let users = ctx.users;
         let current_user = ctx.current_user;
