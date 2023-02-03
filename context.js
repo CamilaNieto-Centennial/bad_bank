@@ -218,36 +218,102 @@ function BankForm(props, { chooseShowP }) {
         }
     }
 
+    /* Validate money to be a number */
+    function validateBeNumber(money) {
+        //console.log(typeof parseFloat(money))
+
+        if (typeof parseFloat(money) == 'number') {
+            console.log("Money is a number.");
+            //document.form1.text1.focus();
+            return true;
+        } 
+        else {
+            console.log("Money is NOT a number.!"+ money)
+            props.chooseStatusP('Must be a number.');
+            setTimeout(() => props.chooseStatusP(''), 5000);
+            return false;
+        }
+    }
+
+    
+    /* Validate deposit to be a positive number, and greater than 0 */
+    function validateNoNegative(money) {
+        if (money == 0) {
+            console.log("Money is 0!")
+            props.chooseStatusP('Must be higher than 0.');
+            setTimeout(() => props.chooseStatusP(''), 5000);
+            return true;
+        }
+        else if (money <= -0.01) {
+            console.log("Money is a negative number! "+ money)
+            props.chooseStatusP('Must be a positive number.');
+            setTimeout(() => props.chooseStatusP(''), 5000);
+            return true;
+        }
+        else { //(deposit > 0)
+            console.log("Money is a positive number.");
+            //document.form1.text1.focus();
+        } 
+    }
+
     /* Handle Deposit Button (update current_user's Deposit ONLY) */
     function handleDeposit() {
-        console.log("Deposit " + deposit);
+        console.log("You typed " + deposit);
         if (!validate(deposit, 'deposit')) return;
+        if (!validateBeNumber(deposit)) return;
+        if (validateNoNegative(deposit)) return;
         let current_user = ctx.current_user;
-        let newDeposit = current_user[1] + parseInt(deposit)
+        let newDeposit = current_user[1] + parseFloat(deposit);
+        newDeposit = parseFloat(newDeposit.toFixed(2));
         current_user.splice(1, 1, newDeposit);
         console.log(current_user)
         updateUsers()
         props.chooseShowP(false)
     }
 
-    /* Handle Withdraw Button */
-    function handleWithdraw() {
-        console.log("Withdraw " + withdraw);
-        if (!validate(withdraw, 'withdraw')) return;
+    /* Validate money to be NOT higher than actual balance */
+    function validateNoExceedLimit(money) {
         let current_user = ctx.current_user;
-        let newWithdraw = current_user[1] - parseInt(withdraw)
+        let actualBalance = current_user[1];
+        //console.log(typeof parseFloat(money))
+
+        if (parseFloat(money) < actualBalance || parseFloat(money) === actualBalance) {
+            console.log("Money is NOT higher than balance.");
+            //document.form1.text1.focus();
+            return true;
+        } 
+        else {
+            console.log("Money is higher than balance! "+ money)
+            props.chooseStatusP(`Must be less than $${actualBalance}`);
+            setTimeout(() => props.chooseStatusP(''), 5000);
+            return false;
+        }
+    }
+
+    /* Handle Withdraw Button (update current_user's Deposit ONLY) */
+    function handleWithdraw() {
+        console.log("You typed " + withdraw);
+        if (!validate(withdraw, 'withdraw')) return;
+        if (!validateBeNumber(withdraw)) return;
+        if (validateNoNegative(withdraw)) return;
+        if (!validateNoExceedLimit(withdraw)) return;
+        let current_user = ctx.current_user;
+        let newWithdraw = current_user[1] - parseFloat(withdraw)
+        newWithdraw = parseFloat(newWithdraw.toFixed(2));
         current_user.splice(1, 1, newWithdraw);
         console.log(current_user)
         updateUsers()
         props.chooseShowP(false)
     }
 
+    /* Clear Deposit Form after Add new Deposit */
     function clearFormD() {
         setDeposit('');
         setShow(true)
         props.chooseShowP(true)
     }
 
+    /* Clear Withdraw Form after Add new Withdraw */
     function clearFormW() {
         setWithdraw('');
         setShow(true)
