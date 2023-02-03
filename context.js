@@ -159,6 +159,15 @@ function BankForm(props, { chooseShowP }) {
         ctx.users.push({ name, email, password, balance: 100 })
         setShow(false)
         props.chooseShowP(false)
+
+        /* Update 'current_user' with the new account created */
+        let usersArray = Object.values(ctx.users);
+        let current_user = ctx.current_user;
+        let lastName = usersArray[usersArray.length - 1]['name']
+        let lastBalance = usersArray[usersArray.length - 1]['balance']
+        let lastEmail = usersArray[usersArray.length - 1]['email']
+        console.log(usersArray[usersArray.length - 1]['email']);
+        current_user.splice(0, 3, lastName, lastBalance, lastEmail);
     }
 
     /* Clear Create Account Form after Add new Account */
