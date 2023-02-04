@@ -391,7 +391,7 @@ function BankForm(props, { chooseShowP }) {
             {/* Create Account Button */}
             {props.buttonCreate && (
                 <>
-                    <button type="submit" className="btn btn-secondary" onClick={handleCreate}>{props.buttonCreate}</button>
+                    <button type="submit" disabled={!name || !email || !password} className="btn btn-secondary" onClick={handleCreate}>{props.buttonCreate}</button>
                 </>
             )
             }
@@ -405,14 +405,14 @@ function BankForm(props, { chooseShowP }) {
             {/* Login Button */}
             {props.buttonLogin && (
                 <>
-                    <button type="submit" className="btn btn-secondary" onClick={handleLogin}>{props.buttonLogin}</button>
+                    <button type="submit" disabled={!email || !password} className="btn btn-secondary" onClick={handleLogin}>{props.buttonLogin}</button>
                 </>
             )
             }
             {/* Deposit Button */}
             {props.buttonDeposit && (
                 <>
-                    <button type="submit" className="btn btn-secondary" onClick={handleDeposit}>{props.buttonDeposit}</button>
+                    <button type="submit" disabled={!deposit} className="btn btn-secondary" onClick={handleDeposit}>{props.buttonDeposit}</button>
                 </>
             )
             }
@@ -433,7 +433,7 @@ function BankForm(props, { chooseShowP }) {
             {/* Withdraw Button */}
             {props.buttonWithdraw && (
                 <>
-                    <button type="submit" className="btn btn-secondary" onClick={handleWithdraw}>{props.buttonWithdraw}</button>
+                    <button type="submit" disabled={!withdraw} className="btn btn-secondary" onClick={handleWithdraw}>{props.buttonWithdraw}</button>
                 </>
             )
             }
