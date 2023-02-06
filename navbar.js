@@ -10,25 +10,40 @@ function NavBar(){
                     <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav mb-2 mb-lg-0 ms-auto">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#/">Home</a>
+                            <a className="nav-link" href="#/">Home</a>
+                            <div class="popover__content">
+                                <p class="popover__message">Welcome message to the website</p>
+                            </div>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#/CreateAccount">Create Account</a>
+                            <div class="popover__content" id="secondPopover">
+                                <p class="popover__message">Create a new account with us using your name, email, and password</p>
+                            </div>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#/login">Login</a>
+                            <div class="popover__content" id="thirdPopover">
+                                <p class="popover__message">Login to your own account</p>
+                            </div>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#/deposit">Deposit</a>
+                            <div class="popover__content" id="fourthPopover">
+                                <p class="popover__message">Put money in your bank account</p>
+                            </div>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#/withdraw">Withdraw</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#/balance">Balance</a>
+                            <div class="popover__content" id="thirdPopover">
+                                <p class="popover__message">Take money out of your bank account</p>
+                            </div>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#/alldata">All Data</a>
+                            <div class="popover__content" id="fifthPopover">
+                                <p class="popover__message">Check your and others' Basic Information</p>
+                            </div>
                         </li>
                     </ul>
                     </div>

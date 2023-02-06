@@ -1,0 +1,88 @@
+/*.navbar-nav li > a {
+    color: #333;
+    transition: background-color 0.2s, color 0.2s;
+}*/
+.navbar-nav li > a:hover, .navbar-nav li > a:focus {
+    /*background-color: #333;*/
+    color: #fff;
+    font-weight: bold;
+}
+.navbar-nav li > .active {
+    /*background-color: #333;*/
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.navbar-nav li {
+    position: relative;
+    /*margin-top: 1.5rem;*/
+    display: inline-block;
+}
+
+.popover__content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: -150px;
+    transform: translate(76px, 35px);
+    background-color: black;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+}
+#secondPopover {
+    transform: translate(70px, 35px);
+}
+.navbar-nav li:hover #secondPopover {
+    transform: translate(70px, 5px);
+}
+
+#thirdPopover {
+    transform: translate(76px, 35px);
+}
+.navbar-nav li:hover #thirdPopover {
+    transform: translate(76px, 5px);
+}
+
+#fourthPopover {
+    transform: translate(77px, 35px);
+}
+.navbar-nav li:hover #fourthPopover {
+    transform: translate(77px, 5px);
+}
+
+#fifthPopover {
+    transform: translate(-3px, 35px);
+}
+.navbar-nav li:hover #fifthPopover {
+    transform: translate(-3px, 5px);
+}
+#fifthPopover:before {
+    right: calc(25% - 10px);
+}
+
+.popover__content:before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    right: calc(50% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent black transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+.navbar-nav li:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(76px, 5px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+.popover__message {
+    text-align: center;
+    margin: 0;
+    color: white;
+}
