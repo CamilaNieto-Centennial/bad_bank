@@ -86,10 +86,10 @@ function BankForm(props, { chooseShowP }) {
     /* Validate empty fields */
     function validate(field, label) {
         if (!field) {
-            console.log('Error: ' + label)
+            console.log('You must fill out your ' + label)
             /*setStatus('Error: ' + label);
             setTimeout(() => setStatus(''), 3000);*/
-            props.chooseStatusP('Error: ' + label);
+            props.chooseStatusP('You must fill out your ' + label);
             setTimeout(() => props.chooseStatusP(''), 3000);
             return false;
         }
@@ -391,7 +391,7 @@ function BankForm(props, { chooseShowP }) {
             {/* Create Account Button */}
             {props.buttonCreate && (
                 <>
-                    <button type="submit" disabled={!name || !email || !password} className="btn btn-secondary" onClick={handleCreate}>{props.buttonCreate}</button>
+                    <button type="submit" disabled={!name && !email && !password} className="btn btn-secondary" onClick={handleCreate}>{props.buttonCreate}</button>
                 </>
             )
             }
@@ -405,7 +405,7 @@ function BankForm(props, { chooseShowP }) {
             {/* Login Button */}
             {props.buttonLogin && (
                 <>
-                    <button type="submit" disabled={!email || !password} className="btn btn-secondary" onClick={handleLogin}>{props.buttonLogin}</button>
+                    <button type="submit" disabled={!email && !password} className="btn btn-secondary" onClick={handleLogin}>{props.buttonLogin}</button>
                 </>
             )
             }

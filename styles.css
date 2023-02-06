@@ -61,7 +61,7 @@
         transform: translate(-3px, 5px);
     }
     #fifthPopover:before {
-        right: calc(25% - 10px);
+        right: calc(17% - 10px);
     }
 
     .popover__content:before {
