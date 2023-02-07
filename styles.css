@@ -1,9 +1,21 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    font-size: 17px;
+}
+
 /* Highlight the active page */
-.navbar-nav li > a:hover, .navbar-nav li > a:focus {
+.navbar-nav li>a:hover,
+.navbar-nav li>a:focus {
     color: #fff;
     font-weight: bold;
 }
-.navbar-nav li > .active {
+
+.navbar-nav li>.active {
     color: #fff;
     font-weight: bold;
 }
@@ -15,78 +27,177 @@
     position: absolute;
 }
 
-/* For screen sizes higher than 768px(sm), the popovers will be shown */
-@media screen and (min-width:768px) {
-    .navbar-nav li {
-        position: relative;
-        display: inline-block;
+/* Font-size of the cards */
+.card-header,
+.card-text {
+    font-size: 1.1rem;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+/* Break Line Style */
+.mainHr {
+    width: 70%;
+    margin: 0em auto 1.5em auto;
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+
+.navbar-nav li {
+    position: relative;
+    display: inline-block;
+}
+
+/* Popovers' settings*/
+.popover__content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: -150px;
+    transform: translate(76px, 35px);
+    background-color: black;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+}
+
+#secondPopover {
+    transform: translate(70px, 35px);
+}
+
+.navbar-nav li:hover #secondPopover {
+    transform: translate(70px, 5px);
+}
+
+#thirdPopover {
+    transform: translate(76px, 35px);
+}
+
+.navbar-nav li:hover #thirdPopover {
+    transform: translate(76px, 5px);
+}
+
+#fourthPopover {
+    transform: translate(77px, 35px);
+}
+
+.navbar-nav li:hover #fourthPopover {
+    transform: translate(77px, 5px);
+}
+
+#fifthPopover {
+    transform: translate(-3px, 35px);
+}
+
+.navbar-nav li:hover #fifthPopover {
+    transform: translate(-3px, 5px);
+}
+
+#fifthPopover:before {
+    right: calc(17% - 10px);
+}
+
+.popover__content:before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    right: calc(50% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent black transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.navbar-nav li:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(76px, 5px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+
+.popover__message {
+    text-align: center;
+    margin: 0;
+    color: white;
+}
+
+/* Containers, mid-containers(right and left), and subcontainers(card) styles*/
+.container-big {
+    height: calc(100vh - 57px);
+    position: relative;
+}
+
+.container-left {
+    background-color: white;
+    width: 50%;
+    height: 100%;
+    float: left;
+    position: relative;
+    /*position: absolute;*/
+}
+
+.subcontainer {
+    height: calc(100vh - 57px);
+    width: 100%;
+}
+
+.subcontainer:after {
+    content: ' ';
+    border-top: calc(100vh - 57px) solid #62040a;
+    border-right: 50vw solid transparent;
+    width: 0;
+    position: absolute;
+    z-index: 0;
+}
+
+.col {
+    z-index: 1;
+}
+
+.container-right {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+        url('./credit_card1.png') center/cover no-repeat;
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+/* For screen sizes until 992px(until md) */
+@media screen and (max-width:992px) {
+    /* Containers, mid-containers(only left visible), and subcontainers(card) styles*/
+    .container-big {
+        height: calc(100vh - 68px);
     }
 
+    .container-left {
+        width: 100%;
+        height: 100%;
+    }
+
+    .subcontainer {
+        height: calc(100vh - 68px);
+    }
+
+    .subcontainer:after {
+        border-top: calc(100vh - 68px) solid #62040a;
+        border-right: 100vw solid transparent;
+    }
+
+    .container-right {
+        display: none;
+    }
+}
+
+/* Hide the popovers in screen sizes lower than 768px */
+@media screen and (max-width:768px) {
     .popover__content {
-        opacity: 0;
-        visibility: hidden;
-        position: absolute;
-        left: -150px;
-        transform: translate(76px, 35px);
-        background-color: black;
-        padding: 1.5rem;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-        width: auto;
+        display: none;
     }
-    #secondPopover {
-        transform: translate(70px, 35px);
-    }
-    .navbar-nav li:hover #secondPopover {
-        transform: translate(70px, 5px);
-    }
-
-    #thirdPopover {
-        transform: translate(76px, 35px);
-    }
-    .navbar-nav li:hover #thirdPopover {
-        transform: translate(76px, 5px);
-    }
-
-    #fourthPopover {
-        transform: translate(77px, 35px);
-    }
-    .navbar-nav li:hover #fourthPopover {
-        transform: translate(77px, 5px);
-    }
-
-    #fifthPopover {
-        transform: translate(-3px, 35px);
-    }
-    .navbar-nav li:hover #fifthPopover {
-        transform: translate(-3px, 5px);
-    }
-    #fifthPopover:before {
-        right: calc(17% - 10px);
-    }
-
-    .popover__content:before {
-        position: absolute;
-        z-index: -1;
-        content: "";
-        right: calc(50% - 10px);
-        top: -8px;
-        border-style: solid;
-        border-width: 0 10px 10px 10px;
-        border-color: transparent transparent black transparent;
-        transition-duration: 0.3s;
-        transition-property: transform;
-    }
-    .navbar-nav li:hover .popover__content {
-        z-index: 10;
-        opacity: 1;
-        visibility: visible;
-        transform: translate(76px, 5px);
-        transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
-    }
-    .popover__message {
-        text-align: center;
-        margin: 0;
-        color: white;
-    }
-
 }

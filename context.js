@@ -20,7 +20,7 @@ function Card(props) {
         return bg;
     }
     return (
-        <div className={classes()} style={{ maxWidth: "18rem" }}>
+        <div className={classes()} style={{ maxWidth: "25rem", minWidth:"18rem" }}>
             <div className="card-header" style={{ background: cardHeader2(), color: cardHeader() }}>{props.header}</div>
             <div className="card-body">
                 {props.title && (<h5 className="card-title" style={{ fontWeight: "bold" }}>{props.title}</h5>)}
