@@ -150,11 +150,24 @@ body {
 
 .subcontainer:after {
     content: ' ';
-    border-top: calc(100vh - 57px) solid #62040a;
+    border-top: calc(100vh - 57px) solid #290628;
     border-right: 50vw solid transparent;
     width: 0;
     position: absolute;
     z-index: 0;
+}
+
+#subcontainer01:after {
+    border-top: calc(100vh - 57px) solid #22223b;
+}
+#subcontainer02:after {
+    border-top: calc(100vh - 57px) solid #432818;
+}
+#subcontainer03:after {
+    border-top: calc(100vh - 57px) solid #0d2818;
+}
+#subcontainer04:after {
+    border-top: calc(100vh - 57px) solid #012a4a;
 }
 
 .col {
@@ -163,11 +176,29 @@ body {
 
 .container-right {
     background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-        url('./credit_card1.png') center/cover no-repeat;
+        url('./img/credit_card1.png') center/cover no-repeat;
     width: 50%;
     height: 100%;
     float: left;
 }
+
+#container-right01 {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+        url('./img/form.jpg') center/cover no-repeat;
+}
+#container-right02 {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+        url('./img/form1.jpg') center/cover no-repeat;
+}
+#container-right03 {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+        url('./img/deposit.jpg') center/cover no-repeat;
+}
+#container-right04 {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+        url('./img/withdraw.jpg') center/cover no-repeat;
+}
+
 
 /* For screen sizes until 992px(until md) */
 @media screen and (max-width:992px) {
@@ -186,7 +217,7 @@ body {
     }
 
     .subcontainer:after {
-        border-top: calc(100vh - 68px) solid #62040a;
+        border-top: calc(100vh - 68px) solid #290628;
         border-right: 100vw solid transparent;
     }
 

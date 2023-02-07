@@ -9,11 +9,11 @@ function Home(){
                         <Card
                             txtcolor="black"
                             header="BadBank Landing Page"
-                            headercolor = "black"
-                            headerBackground = "#89c2d9"
+                            headercolor = "white"
+                            headerBackground = "#592e83"
                             title={`Welcome to the bank ${current_user[0]}!`}
                             text="You can use this bank"
-                            body={(<img src="bank.png" className="img-fluid" alt="Responsive image"></img>)}
+                            body={(<img src="./img/bank.png" className="img-fluid" alt="Responsive image"></img>)}
                         />
                     </div>
                 </div>
