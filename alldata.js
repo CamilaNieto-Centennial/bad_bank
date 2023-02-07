@@ -18,10 +18,13 @@ function AllData() {
                             <hr className="mainHr"/>
                             <div className="row">
                                 <div className="col-sm-12">
+                                    <h5><strong>Name: </strong>{current_user[0]}</h5>
+                                </div>
+                                <div className="col-sm-12">
                                     <h5><strong>Email: </strong>{current_user[2]}</h5>
                                 </div>
                                 <div className="col-sm-12">
-                                    <h5><strong>Balance: </strong>$ {current_user[1]}</h5>
+                                    <h5><strong>Balance: </strong>${current_user[1]}</h5>
                                 </div>
                             </div>
                         </div>

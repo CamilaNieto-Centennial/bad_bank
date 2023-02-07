@@ -231,13 +231,13 @@ function BankForm(props, { chooseShowP }) {
     function validateBeNumber(money) {
         //console.log(typeof parseFloat(money))
 
-        if (typeof parseFloat(money) == 'number') {
+        if (isNaN(money) === false) {
             console.log("Money is a number.");
             //document.form1.text1.focus();
             return true;
         } 
         else {
-            console.log("Money is NOT a number.!"+ money)
+            console.log("Money is NOT a number! "+ money)
             props.chooseStatusP('Must be a number.');
             setTimeout(() => props.chooseStatusP(''), 5000);
             return false;
@@ -293,8 +293,8 @@ function BankForm(props, { chooseShowP }) {
         } 
         else {
             console.log("Money is higher than balance! "+ money)
-            props.chooseStatusP(`Must be less than $${actualBalance}`);
-            setTimeout(() => props.chooseStatusP(''), 5000);
+            props.chooseStatusP(`Must be less than or equal to $${actualBalance}`);
+            setTimeout(() => props.chooseStatusP(''), 6000);
             return false;
         }
     }
@@ -375,7 +375,7 @@ function BankForm(props, { chooseShowP }) {
             {props.deposit && (
                 <>
                     <label htmlFor={props.deposit}>Deposit Amount</label>
-                    <input type="number" className="form-control" id={props.deposit} placeholder="Deposit Amount" value={deposit} onChange={e => setDeposit(e.currentTarget.value)} />
+                    <input type="input" className="form-control" id={props.deposit} placeholder="Deposit Amount" value={deposit} onChange={e => setDeposit(e.currentTarget.value)} />
                     <br />
                 </>
             )
@@ -383,7 +383,7 @@ function BankForm(props, { chooseShowP }) {
             {props.withdraw && (
                 <>
                     <label htmlFor={props.withdraw}>Withdraw Amount</label>
-                    <input type="number" className="form-control" id={props.withdraw} placeholder="Withdraw Amount" value={withdraw} onChange={e => setWithdraw(e.currentTarget.value)} />
+                    <input type="input" className="form-control" id={props.withdraw} placeholder="Withdraw Amount" value={withdraw} onChange={e => setWithdraw(e.currentTarget.value)} />
                     <br />
                 </>
             )
