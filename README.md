@@ -4,7 +4,7 @@
 
 <h3>Description:</h3>
 <p>This project is a responsive webpage called "Bad Bank" because the web application represents a bank with no security. This website uses HTML, CSS, JavaScript, Bootstrap, and React. Please keep in mind that this is not an official website that shows up as a real bank webpage. I am just a developer who wants to showcase a cool website.</p>
-<p>Finally, I want to inform that this website only shows the Front End part of this application. It doesn't have integrated any Database, or Back-End part.</p>
+<p>Finally, I want to inform you that this website only shows the Front End part of this application. It doesn't have integrated any Database, or Back-End part.</p>
 
 <h3>How to Run the website locally:</h3>
 After you clone this repository, you must follow these steps:
