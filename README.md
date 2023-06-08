@@ -13,3 +13,9 @@ After you clone this repository, you must follow these steps:
     <li>Now type <strong><code>http-server</code></strong> , so it will start a local HTTP server that serves files from the current directory.</li>
     <li>Then click on any of the options that appear, or copy the URL that you want, and paste it into your browser.</li>
 </ul>
+
+<h3>New Version Released!</h3>
+<p>If you want to see this page with new features including back-end integration, usage of Mantine UI, Next.js, Firebase, and much more... Feel free to take a look at the <strong>"Full Stack Banking App"</strong>: </p>
+<ul>
+    <li><a style="font-weight: bold" href="https://github.com/CamilaNieto-Centennial/Full-Stack-Banking-App">GitHub repo</a></li>
+</ul>
